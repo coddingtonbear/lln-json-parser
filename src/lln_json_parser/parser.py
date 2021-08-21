@@ -10,7 +10,7 @@ def get_entries(
     parsed = json.load(data)
 
     for item in parsed:
-        if item['itemType'] == 'WORD':
+        if item["itemType"] == "WORD":
             yield SavedWord(**item)  # type: ignore
-        elif item['itemType'] == 'PHRASE':
+        elif item["itemType"] == "PHRASE":
             yield SavedPhrase(**item)  # type: ignore
