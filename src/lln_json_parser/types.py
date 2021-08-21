@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Any, Literal, Optional, List, TypeVar, Generic, Union, Sequence
 
 from pydantic import Field, BaseModel
@@ -14,43 +15,43 @@ class Triple(BaseModel, Generic[T]):
 
 class YoutubeReference(BaseModel):
     source: Literal["YOUTUBE"]
-    channelId: Optional[str]
-    ownerChannelName: Optional[str]
-    langCode_YT: str
-    langCode_G: Optional[str]  # ISO-639-1
+    channel_id: Optional[str] = Field(alias="channelId")
+    owner_channel_name: Optional[str] = Field(alias="ownerChannelName")
+    lang_code_youtube: str = Field(alias="langCode_YT")
+    lang_code: Optional[str]  # ISO-639-1 = Field(alias="langCode_G")
     title: Optional[str]
-    movieId: str
-    subtitleIndex: int
-    numSubs: int
-    startTime_ms: Optional[int]
-    endTime_ms: Optional[int]
+    movie_id: str = Field(alias="movieId")
+    subtitle_index: int = Field(alias="subtitleIndex")
+    num_subs: int = Field(alias="numSubs")
+    start_time_ms: Optional[int] = Field(alias="startTime_ms")
+    end_time_ms: Optional[int] = Field(alias="endTime_ms")
 
 
 class NetflixReference(BaseModel):
     source: Literal["NETFLIX"]
-    movieId: str
-    langCode_N: str
-    langCode_G: Optional[str]  # ISO-639-1
+    movie_id: str = Field(alias="movieId")
+    lang_code_netflix: str = Field(alias="langCode_N")
+    lang_code: Optional[str]  # ISO-639-1 = Field(alias="langCode_G")
     title: Optional[str]
-    subtitleIndex: int
-    numSubs: int
-    startTime_ms: Optional[int]
-    endTime_ms: Optional[int]
+    subtitle_index: int = Field(alias="subtitleIndex")
+    num_subs: int = Field(alias="numSubs")
+    start_time_ms: Optional[int] = Field(alias="startTime_ms")
+    end_time_ms: Optional[int] = Field(alias="endTime_ms")
 
 
 class Thumbnail(BaseModel):
     height: int
     width: int
     time: int
-    dataURL: str
+    data_url: str = Field(alias="dataURL")
 
 
 class Audio(BaseModel):
     source: Literal["microsoft", "google", "movie"]
     voice: Optional[str]
-    outputFormat: str  # e.g. 'Audio24Khz48BitRateMonoMp3'
-    dateCreated: float  # unix timestamp
-    dataURL: str
+    output_format: str = Field(alias="outputFormat")
+    date_created: datetime = Field(alias="dateCreated")
+    data_url: str = Field(alias="dataURL")
 
 
 class WordData(BaseModel):
@@ -101,10 +102,12 @@ class TokenGroup(BaseModel):
 
 
 class Phrase(BaseModel):
-    subtitleTokens: Triple[Sequence[Union[Token, TokenGroup]]]
+    subtitle_tokens: Triple[Sequence[Union[Token, TokenGroup]]] = Field(
+        alias="subtitleTokens"
+    )
     subtitles: Triple[str]
-    mTranslations: Optional[Triple[str]]
-    hTranslations: Optional[Triple[str]]
+    machine_ranslations: Optional[Triple[str]] = Field(alias="mTranslations")
+    human_ranslations: Optional[Triple[str]] = Field(alias="hTranslations")
     reference: Union[NetflixReference, YoutubeReference]
     thumb_prev: Optional[Thumbnail]
     thumb_next: Optional[Thumbnail]
@@ -112,21 +115,21 @@ class Phrase(BaseModel):
 
 
 class SavedWordContext(BaseModel):
-    wordIndex: int
+    word_index: int = Field(alias="wordIndex")
     phrase: Phrase
 
 
 class SavedWord(BaseModel):
-    itemType: Literal["WORD"]
-    langCode_G: str
+    item_type: Literal["WORD"] = Field(alias="itemType")
+    lang_code: str = Field(alias="langCode_G")
     context: Optional[SavedWordContext]
     color: Literal["C0", "C1", "C2", "C3", "C4"]
-    wordTranslationsArr: Optional[List[str]]
-    translationLangCode_G: str  # ISO-639-1
-    wordType: Literal["lemma", "form"]
+    word_translations: Optional[List[str]] = Field(alias="wordTranslationsArr")
+    translation_lang_code: str = Field(alias="translationLangCode_G")
+    word_type: Literal["lemma", "form"] = Field(alias="wordType")
     word: WordData
     audio: Optional[Audio]
-    timeCreated: int
+    time_created: datetime = Field(alias="timeCreated")
     freq: Optional[int] = None  # Frequency in the language
 
 
@@ -135,11 +138,11 @@ class SavedPhraseContext(BaseModel):
 
 
 class SavedPhrase(BaseModel):
-    itemType: Literal["PHRASE"]
-    langCode_G: str  # ISO-639-1
-    translationLangCode_G: str  # ISO-639-1
+    item_type: Literal["PHRASE"] = Field(alias="itemType")
+    lang_code: str = Field(alias="langCode_G")
+    translation_lang_code: str = Field(alias="translationLangCode_G")
     context: SavedPhraseContext
-    timeCreated: int
+    time_created: datetime = Field(alias="timeCreated")
 
 
 Export = Sequence[Union[SavedWord, SavedPhrase]]
