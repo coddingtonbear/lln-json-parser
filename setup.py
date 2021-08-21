@@ -24,7 +24,7 @@ def read(*names, **kwargs):
 
 setup(
     name="lln-json-parser",
-    version="0.1.0",
+    version="0.1.1",
     license="MIT",
     description="Parse the JSON export of your saved words and phrases in Language Learning with Netflix so you can use them with other systems (e.g. converting them into Anki flashcards).",
     long_description_content_type="text/markdown",
