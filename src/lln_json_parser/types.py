@@ -106,8 +106,8 @@ class Phrase(BaseModel):
         alias="subtitleTokens"
     )
     subtitles: Triple[str]
-    machine_ranslations: Optional[Triple[str]] = Field(alias="mTranslations")
-    human_ranslations: Optional[Triple[str]] = Field(alias="hTranslations")
+    machine_translations: Optional[Triple[str]] = Field(alias="mTranslations")
+    human_translations: Optional[Triple[str]] = Field(alias="hTranslations")
     reference: Union[NetflixReference, YoutubeReference]
     thumb_prev: Optional[Thumbnail]
     thumb_next: Optional[Thumbnail]
