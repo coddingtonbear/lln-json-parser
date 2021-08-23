@@ -26,7 +26,11 @@ setup(
     name="lln-json-parser",
     version="0.1.2",
     license="MIT",
-    description="Parse the JSON export of your saved words and phrases in Language Learning with Netflix so you can use them with other systems (e.g. converting them into Anki flashcards).",
+    description=(
+        "Parse the JSON export of your saved words and phrases in "
+        "Language Learning with Netflix so you can use them with other "
+        "systems (e.g. converting them into Anki flashcards)."
+    ),
     long_description_content_type="text/markdown",
     long_description="%s"
     % (
@@ -43,7 +47,6 @@ setup(
     include_package_data=True,
     zip_safe=False,
     classifiers=[
-        # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
@@ -66,8 +69,9 @@ setup(
         "Topic :: Utilities",
     ],
     project_urls={
-        "Changelog": "https://github.com/coddingtonbear/lln-json-parser/blob/master/CHANGELOG.md",
-        "Issue Tracker": "https://github.com/coddingtonbear/lln-json-parser/issues",
+        "Issue Tracker": (
+            "https://github.com/coddingtonbear/lln-json-parser/issues"
+        ),
     },
     keywords=[
         # eg: 'keyword1', 'keyword2', 'keyword3',
