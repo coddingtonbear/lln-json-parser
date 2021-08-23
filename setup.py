@@ -69,9 +69,7 @@ setup(
         "Topic :: Utilities",
     ],
     project_urls={
-        "Issue Tracker": (
-            "https://github.com/coddingtonbear/lln-json-parser/issues"
-        ),
+        "Issue Tracker": "https://github.com/coddingtonbear/lln-json-parser/issues",
     },
     keywords=[
         # eg: 'keyword1', 'keyword2', 'keyword3',
