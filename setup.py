@@ -77,6 +77,7 @@ setup(
     python_requires=">=3.6",
     install_requires=[
         "pydantic>=1.8.2,<2.0.0",
+        "typing_extensions",
         # eg: 'aspectlib==1.1.1', 'six>=1.7',
     ],
     extras_require={
