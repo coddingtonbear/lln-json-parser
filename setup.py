@@ -24,7 +24,7 @@ def read(*names, **kwargs):
 
 setup(
     name="lln-json-parser",
-    version="0.1.2",
+    version="0.1.3",
     license="MIT",
     description=(
         "Parse the JSON export of your saved words and phrases in "
